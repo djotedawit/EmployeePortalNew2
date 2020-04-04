@@ -1,0 +1,27 @@
+﻿using EmployeePortal.FactoryMethod;
+using EmployeePortal.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace EmployeePortal.Manager.Factory
+{
+    public class EmployeeManagerFactory
+    {
+        public BaseEmployeeFactory CreateFactory(Employee emp)
+        {
+            BaseEmployeeFactory returnValue = null;
+            if (emp.EmployeeTypeId == 1)
+            {
+                returnValue = new PermantEmployeeFactory(emp);
+            }
+            else if (emp.EmployeeTypeId == 2)
+            {
+                returnValue = new ContractEmployeeFactory(emp);
+            }
+            return returnValue;
+        }
+
+    }
+}
